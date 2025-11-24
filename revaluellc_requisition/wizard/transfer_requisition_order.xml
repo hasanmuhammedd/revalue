@@ -27,13 +27,13 @@
                     <notebook>
                         <page string="Items">
                             <field name="transfer_requisition_order_line_ids">               <!-- add  context="{'default_field' : field}" to set default value -->
-                                <tree editable="bottom" edit="1" create="0">
+                                <list editable="bottom" edit="1" create="0">
                                     <field name="transfer_requisition_order_id" invisible="1"/>       <!-- add  domain="[('id','=',parent.field)]" to set default domain -->
                                     <field name="product_id"/>
                                     <field name="name" required="parent.transfer_type == 'transfer'"/>
                                     <field name="uom_id"/>
                                     <field name="quantity"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                     </notebook>

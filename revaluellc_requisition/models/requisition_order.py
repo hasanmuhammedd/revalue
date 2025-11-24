@@ -91,7 +91,7 @@ class PurchaseRequisitionOrder(models.Model):
             "domain": [('purchase_requisition_id', '=', self.id)],
             "context": {"create": False},
             "name": _("Purchase Agreements"),
-            'view_mode': 'tree,form',
+            'view_mode': 'list,form',
         }
         return result
 
@@ -110,7 +110,7 @@ class PurchaseRequisitionOrder(models.Model):
             "domain": [('purchase_requisition_id', '=', self.id)],
             "context": {"create": False},
             "name": _("Purchase Order"),
-            'view_mode': 'tree,form',
+            'view_mode': 'list,form',
         }
         return result
 
@@ -129,7 +129,7 @@ class PurchaseRequisitionOrder(models.Model):
             "domain": [('requisition_order_id', '=', self.id)],
             "context": {"create": False},
             "name": _("Stock Picking"),
-            'view_mode': 'tree,form',
+            'view_mode': 'list,form',
         }
         return result
 
@@ -277,7 +277,7 @@ class RequisitionOrderLine(models.Model):
                 'domain': [('product_id', '=', self.product_id.id),
                            ('on_hand', '=', True)],
                 'view_mode': 'form',
-                'views': [(address_form_id, 'tree')],
+                'views': [(address_form_id, 'list')],
                 'target': 'new',
                 }
 

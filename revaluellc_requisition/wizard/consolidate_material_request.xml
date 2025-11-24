@@ -16,7 +16,7 @@
                     <notebook>
                         <page string="Items">
                             <field name="consolidate_material_request_line_ids">               <!-- add  context="{'default_field' : field}" to set default value -->
-                                <tree editable="bottom">
+                                <list editable="bottom">
 <!--                                    <field name="project" />       &lt;!&ndash; add  domain="[('id','=',parent.field)]" to set default domain &ndash;&gt;-->
                                     <field name="product_id"/>
                                     <field name="uom_id"/>
@@ -24,7 +24,7 @@
                                     <field name="request"/>
                                     <field name="remaining" force_save="1"/>
                                     <field name="material_request_id" invisible="1"/>
-                                </tree>
+                                </list>
                             </field>
 
                         </page>

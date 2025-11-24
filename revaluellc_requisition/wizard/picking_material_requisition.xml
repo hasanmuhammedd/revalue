@@ -10,7 +10,7 @@
                     <notebook>
                         <page string="Lines">
                             <field name="picking_material_requisition_line_ids" force_save="1">               <!-- add  context="{'default_field' : field}" to set default value -->
-                                <tree editable="bottom">
+                                <list editable="bottom">
                                     <field name="picking_material_requisition_id"
                                            invisible="1"/>       <!-- add  domain="[('id','=',parent.field)]" to set default domain -->
                                     <field name="product_id"/>
@@ -21,7 +21,7 @@
                                     <field name="quantity"/>
                                     <field name="select"/>
 
-                                </tree>
+                                </list>
                             </field>
                         </page>
                     </notebook>

@@ -30,7 +30,7 @@ class StockPicking(models.Model):
             "domain": [('picking_id', '=', self.id)],
             "context": {"create": False},
             "name": _("Requisition."),
-            'view_mode': 'tree,form',
+            'view_mode': 'list,form',
         }
         return result
 
@@ -78,7 +78,7 @@ class StockMove(models.Model):
                 'domain': [('product_id', '=', self.product_id.id),
                            ('on_hand', '=', True),('show_on_hand', '=', True)],
                 'view_mode': 'form',
-                'views': [(address_form_id, 'tree')],
+                'views': [(address_form_id, 'list')],
                 'target': 'new',
                 }
 
