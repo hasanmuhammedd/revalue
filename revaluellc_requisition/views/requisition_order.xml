@@ -8,23 +8,23 @@
             <form>
                 <header>
                     <button name="confirm" type="object" string="Confirm"
-                            class="oe_highlight" invisible="state not in ['draft']"/>
+                            class="oe_highlight" invisible="state != 'draft'"/>
                     <button name="send_to_pm_approve" type="object" string="Send To PM Approve"
-                            class="oe_highlight" invisible="state not in ['confirmed']"/>
+                            class="oe_highlight" invisible="state != 'confirmed'"/>
                     <button name="pm_approved" type="object" string="PM Approved"
-                            class="oe_highlight" invisible="state not in ['send_to_pm_approve']"
+                            class="oe_highlight" invisible="state != 'send_to_pm_approve'"
                             groups="revaluellc_requisition.group_requisition_pm_manager"/>
                     <button name="pm_rejected" type="object" string="PM Rejected"
-                            class="oe_highlight" invisible="state not in ['send_to_pm_approve']"
+                            class="oe_highlight" invisible="state != 'send_to_pm_approve'"
                             groups="revaluellc_requisition.group_requisition_pm_manager"/>
                     <button name="transfer" type="object" string="Transfer"
-                            class="oe_highlight" invisible="state not in ['pm_approved']"
+                            class="oe_highlight" invisible="state != 'pm_approved'"
                             groups="revaluellc_requisition.group_requisition_administrator"/>
                     <button name="purchase" type="object" string="Purchase"
-                            class="oe_highlight" invisible="state not in ['pm_approved']"
+                            class="oe_highlight" invisible="state != 'pm_approved'"
                             groups="revaluellc_requisition.group_requisition_administrator"/>
                     <button name="lock_order" type="object" string="Lock"
-                            invisible="state not in ['pm_approved']"
+                            invisible="state != 'pm_approved'"
                             groups="revaluellc_requisition.group_requisition_administrator"/>
                     <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,lock"/>
                 </header>
@@ -89,7 +89,7 @@
                                             groups="revaluellc_requisition.group_requisition_administrator"/>
                                     <field name="quantity"/>
                                     <field name="select"
-                                           invisible="parent.state not in ['pm_approved']" widget="boolean_toggle"/>
+                                           invisible="parent.state != 'pm_approved'" widget="boolean_toggle"/>
                                 </tree>
                             </field>
                         </page>
