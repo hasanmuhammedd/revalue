@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="revaluellc_requisition.list">
+      <field name="name">revaluellc_requisition list</field>
+      <field name="model">revaluellc_requisition.revaluellc_requisition</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="revaluellc_requisition.action_window">
+      <field name="name">revaluellc_requisition window</field>
+      <field name="res_model">revaluellc_requisition.revaluellc_requisition</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="revaluellc_requisition.action_server">
+      <field name="name">revaluellc_requisition server</field>
+      <field name="model_id" ref="model_revaluellc_requisition_revaluellc_requisition"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="revaluellc_requisition" id="revaluellc_requisition.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="revaluellc_requisition.menu_1" parent="revaluellc_requisition.menu_root"/>
+    <menuitem name="Menu 2" id="revaluellc_requisition.menu_2" parent="revaluellc_requisition.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="revaluellc_requisition.menu_1_list" parent="revaluellc_requisition.menu_1"
+              action="revaluellc_requisition.action_window"/>
+    <menuitem name="Server to list" id="revaluellc_requisition" parent="revaluellc_requisition.menu_2"
+              action="revaluellc_requisition.action_server"/>
+-->
+  </data>
+</odoo>

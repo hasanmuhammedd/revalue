@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="material_request_tree" model="ir.ui.view">
+        <field name="name">material.request.tree</field>
+        <field name="model">material.request</field>
+        <field name="arch" type="xml">
+
+            <tree editable="bottom">
+                <header>
+                    <button name="consolidate" type="object" string="Consolidate" class="oe_highlight"/>
+                </header>
+                <field name="product_id"/>
+                <field name="demand"/>
+                <field name="project"/>
+                <field name="delivery_time"/>
+                <field name="delivery"/>
+                <field name="requested"/>
+                <field name="remaining" readonly="1" force_save="1"/>
+                <field name="state" widget="badge"
+                       decoration-muted="state == 'draft'"
+                       decoration-warning="state  == 'part_cons'"
+                       decoration-success="state == 'full_cons'"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="material_request_action" model="ir.actions.act_window">
+        <field name="name">Material Request</field>
+        <field name="res_model">material.request</field>
+        <field name="view_mode">tree</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Material Request
+            </p>
+        </field>
+    </record>
+</odoo>

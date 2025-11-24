@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="revaluellc_requisition_category" model="ir.module.category">
+        <field name="name">Requisition</field>
+    </record>
+    <record id="group_requisition_user" model="res.groups">
+        <field name="name">User</field>
+        <field name="category_id" ref="revaluellc_requisition.revaluellc_requisition_category"/>
+        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+    </record>
+    <record id="group_requisition_administrator" model="res.groups">
+        <field name="name">Administrator</field>
+        <field name="category_id" ref="revaluellc_requisition.revaluellc_requisition_category"/>
+        <field name="implied_ids" eval="[(6, 0, [ref('revaluellc_requisition.group_requisition_user')])]"/>
+        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+    </record>
+    <record id="group_requisition_pm_manager" model="res.groups">
+        <field name="name">Requisition Pm Manager</field>
+    </record>
+</odoo>

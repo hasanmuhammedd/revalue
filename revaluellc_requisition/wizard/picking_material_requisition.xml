@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="picking_material_requisition_form" model="ir.ui.view">
+        <field name="name">picking.material.requisition.form</field>
+        <field name="model">picking.material.requisition</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <notebook>
+                        <page string="Lines">
+                            <field name="picking_material_requisition_line_ids" force_save="1">               <!-- add  context="{'default_field' : field}" to set default value -->
+                                <tree editable="bottom">
+                                    <field name="picking_material_requisition_id"
+                                           column_invisible="1"/>       <!-- add  domain="[('id','=',parent.field)]" to set default domain -->
+                                    <field name="product_id"/>
+<!--                                    <field name="project"/>-->
+                                    <field name="description"/>
+                                    <field name="uom_id"/>
+                                    <field name="demand"/>
+                                    <field name="quantity"/>
+                                    <field name="select"/>
+
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <footer>
+                    <button name="confirm" type="object" string="Confirm"
+                            class="oe_highlight"/>
+                    <button string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window"
+            id="picking_material_requisition_action">
+        <field name="name">Picking Material Requisition</field>
+        <field name="res_model">picking.material.requisition</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

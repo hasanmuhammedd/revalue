@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="inherit_stock_picking_form" model="ir.ui.view">
+        <field name="name">inherit.stock.picking.form</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_view_all_purchase_requisition"
+                        type="object" class="oe_stat_button"
+                        icon="fa-pencil-square-o"
+                        invisible="count_requisition == 0">
+                    <field name="count_requisition"
+                           widget="statinfo" string="Agreements"/>
+                </button>
+            </xpath>
+
+            <xpath expr="//field[@name='origin']" position="after">
+                <field name="project"  readonly="1"/>
+                <field name="requisition_order_id"
+                       invisible="requisition_order_id == False"/>
+            </xpath>
+            <xpath expr="//field[@name='move_ids_without_package']/tree/field[@name='product_id']"
+                   position="after">
+                <field name="project"/>
+                open_on_hand
+                <button name="open_on_hand" type="object"
+                        string="Check On Hand"/>
+            </xpath>
+
+
+        </field>
+    </record>
+
+    <record id="inherit_stock_picking_form" model="ir.ui.view">
+        <field name="name">inherit.stock.picking.form</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="revaluellc_stock_picking_check_validate.inherit_stock_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="requisition_order" type="object" string="Requisition Order" class="oe_highlight"/>
+            </xpath>
+        </field>
+    </record>
+
+
+
+    <record id="view_move_line_detailed_tree" model="ir.ui.view">
+        <field name="name">stock.move.line.detailed.tree</field>
+        <field name="model">stock.move.line</field>
+        <field
+                name="inherit_id"
+                ref="stock.view_stock_move_line_detailed_operation_tree"
+        />
+        <field name="arch" type="xml">
+            <field name="product_id" position="after">
+                <field name="project"/>
+                <field name="mac_address"/>
+            </field>
+        </field>
+    </record>
+
+
+    <record id="stock_move_line_operations_nosuggest_warranty_view_form" model="ir.ui.view">
+        <field name="name">stock pack operation inherited</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_stock_move_line_operation_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='lot_name']" position="after">
+                <field name="mac_address"/>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>

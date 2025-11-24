@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="purchase_requisition_order_form" model="ir.ui.view">
+        <field name="name">purchase.requisition.order.form</field>
+        <field name="model">purchase.requisition.order</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="confirm" type="object" string="Confirm"
+                            class="oe_highlight" invisible="state != 'draft'"/>
+                    <button name="send_to_pm_approve" type="object" string="Send To PM Approve"
+                            class="oe_highlight" invisible="state != 'confirmed'"/>
+                    <button name="pm_approved" type="object" string="PM Approved"
+                            class="oe_highlight" invisible="state != 'send_to_pm_approve'"
+                            groups="revaluellc_requisition.group_requisition_pm_manager"/>
+                    <button name="pm_rejected" type="object" string="PM Rejected"
+                            class="oe_highlight" invisible="state != 'send_to_pm_approve'"
+                            groups="revaluellc_requisition.group_requisition_pm_manager"/>
+                    <button name="transfer" type="object" string="Transfer"
+                            class="oe_highlight" invisible="state != 'pm_approved'"
+                            groups="revaluellc_requisition.group_requisition_administrator"/>
+                    <button name="purchase" type="object" string="Purchase"
+                            class="oe_highlight" invisible="state != 'pm_approved'"
+                            groups="revaluellc_requisition.group_requisition_administrator"/>
+                    <button name="lock_order" type="object" string="Lock"
+                            invisible="state != 'pm_approved'"
+                            groups="revaluellc_requisition.group_requisition_administrator"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,lock"/>
+                </header>
+                <sheet>
+                    <div name="button_box" class="oe_button_box">
+                        <button name="action_view_all_stock_picking"
+                                type="object" class="oe_stat_button"
+                                icon="fa-pencil-square-o"
+                                invisible="count_picking == 0">
+                            <field name="count_picking" widget="statinfo"
+                                   string="Picking"/>
+                        </button>
+                        <button name="action_view_all_purchase_requisition"
+                                type="object" class="oe_stat_button"
+                                icon="fa-pencil-square-o"
+                                invisible="count_purchase_requisition == 0">
+                            <field name="count_purchase_requisition"
+                                   widget="statinfo" string="Agreements"/>
+                        </button>
+                        <button name="action_view_all_purchase_order"
+                                type="object" class="oe_stat_button"
+                                icon="fa-pencil-square-o"
+                                invisible="count_purchase_order == 0">
+                            <field name="count_purchase_order" widget="statinfo"
+                                   string="Purchase"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="description"/>
+                            <field name="show_category_budget" invisible="1"/>
+                            <field name="picking_id" invisible="picking_id == False"/>
+                            <field name="project" invisible="1"/>
+                            <field name="project_id" invisible="project_id == False"/>
+                        </group>
+                        <group>
+                            <field name="date"/>
+                            <field name="user_id"/>
+                            <field name="state" invisible="1"/>
+                            <field name="show_select_all" invisible="1"/>
+                            <field name="show_deselect_all" invisible="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Items">
+                            <button name="select_all" type="object"  string="✓ Select All" invisible="show_select_all == False" class="oe_link"/>
+                            <button name="deselect_all" type="object" string="✗ Deselect All" invisible="show_deselect_all == False" class="oe_link"/>
+                            <field name="requisition_order_line_ids">
+                                <tree editable="bottom">
+                                    <field name="purchase_requisition_order_id"
+                                           column_invisible="1"/>
+                                    <field name="product_id"/>
+                                    <field name="name"/>
+                                    <field name="uom_id"/>
+                                    <button name="open_on_hand" type="object"
+                                            string="Check On Hand"
+                                            groups="revaluellc_requisition.group_requisition_administrator"/>
+                                    <field name="quantity"/>
+                                    <field name="select"
+                                           column_invisible="parent.state != 'pm_approved'" widget="boolean_toggle"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Budget For Category"
+                              invisible="show_category_budget != True"
+                              groups="revaluellc_requisition.group_requisition_pm_manager">
+                            <field name="requisition_category_budget_ids">               <!-- add  context="{'default_field' : field}" to set default value -->
+                                <tree editable="bottom" create="0" edit="0"
+                                      delete="0">
+                                    <field name="purchase_requisition_order_id"
+                                           column_invisible='1'/>       <!-- add  domain="[('id','=',parent.field)]" to set default domain -->
+                                    <field name="product_category_id"/>
+                                    <field name="total_cost"/>
+                                    <field name="budget_of_category"/>
+                                </tree>
+                            </field>
+                        </page>
+
+                    </notebook>
+
+
+
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="purchase_requisition_order_tree" model="ir.ui.view">
+        <field name="name">purchase.requisition.order.tree</field>
+        <field name="model">purchase.requisition.order</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="date"/>
+                <field name="user_id"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="purchase_requisition_order_sequence" model="ir.sequence">
+        <field name="name">purchase.requisition.order</field>
+        <field name="code">purchase.requisition.order</field>
+        <field name="prefix">REQ/</field>
+        <field name="padding">5</field>
+        <field name="number_increment">1</field>
+    </record>
+
+
+    <record id="purchase_requisition_order_action"
+            model="ir.actions.act_window">
+        <field name="name">Purchase Requisition Order</field>
+        <field name="res_model">purchase.requisition.order</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Requisition Order
+            </p>
+        </field>
+    </record>
+</odoo>

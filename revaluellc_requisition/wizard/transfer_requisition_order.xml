@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <record id="transfer_requisition_order_form" model="ir.ui.view">
+        <field name="name">transfer.requisition.order.form</field>
+        <field name="model">transfer.requisition.order</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="picking_type_id" invisible="transfer_type != 'transfer'" required="requisition_type == 'transfer'"/>
+                            <field name="location_id" invisible="transfer_type != 'transfer'" required="requisition_type == 'transfer'"/>
+                            <field name="location_dest_id" invisible="transfer_type != 'transfer'" required="requisition_type == 'transfer'"/>
+                            <field name="transfer_type" invisible="1"/>
+                            <field name="requisition_type" widget="radio"
+                                   options="{'vertical': True}" invisible="transfer_type != 'purchase'"/>
+                            <field name="partner_id" invisible="transfer_type != 'purchase' or requisition_type not in ['tender','purchase']" required="requisition_type == 'purchase'"/>
+
+                        </group>
+                        <group>
+                            <field name="project" invisible="transfer_type != 'purchase'"/>
+                        </group>
+
+                    </group>
+                    <notebook>
+                        <page string="Items">
+                            <field name="transfer_requisition_order_line_ids">               <!-- add  context="{'default_field' : field}" to set default value -->
+                                <tree editable="bottom" edit="1" create="0">
+                                    <field name="transfer_requisition_order_id" column_invisible="1"/>       <!-- add  domain="[('id','=',parent.field)]" to set default domain -->
+                                    <field name="product_id"/>
+                                    <field name="name" column_required="parent.transfer_type == 'transfer'"/>
+                                    <field name="uom_id"/>
+                                    <field name="quantity"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+
+                </sheet>
+                <footer>
+                    <button name="confirm" type="object" string="Confirm" class="oe_highlight" />
+                    <button string="Cancel" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="transfer_requisition_order_action">
+        <field name="name">Transfer Requisition Order</field>
+        <field name="res_model">transfer.requisition.order</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

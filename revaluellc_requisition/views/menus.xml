@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="requisition_parent_order_menu"
+              name="Requisition"
+              web_icon="revaluellc_requisition,static/description/icon.png"/>
+    <menuitem id="purchase_requisition_order_menu"
+              name="Requisition"
+              action="purchase_requisition_order_action"
+              parent="requisition_parent_order_menu"
+              sequence="1"/>
+    <menuitem id="material_request_menu"
+              name="Material Request"
+              action="material_request_action"
+              parent="purchase.menu_procurement_management"
+              sequence="11"/>
+
+
+</odoo>
