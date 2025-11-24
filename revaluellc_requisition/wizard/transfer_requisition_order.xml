@@ -30,7 +30,7 @@
                                 <tree editable="bottom" edit="1" create="0">
                                     <field name="transfer_requisition_order_id" invisible="1"/>       <!-- add  domain="[('id','=',parent.field)]" to set default domain -->
                                     <field name="product_id"/>
-                                    <field name="name" column_required="parent.transfer_type == 'transfer'"/>
+                                    <field name="name" required="parent.transfer_type in ['transfer']"/>
                                     <field name="uom_id"/>
                                     <field name="quantity"/>
                                 </tree>
