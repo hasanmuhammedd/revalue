@@ -12,7 +12,7 @@
                             <field name="picking_material_requisition_line_ids" force_save="1">               <!-- add  context="{'default_field' : field}" to set default value -->
                                 <tree editable="bottom">
                                     <field name="picking_material_requisition_id"
-                                           column_invisible="1"/>       <!-- add  domain="[('id','=',parent.field)]" to set default domain -->
+                                           invisible="1"/>       <!-- add  domain="[('id','=',parent.field)]" to set default domain -->
                                     <field name="product_id"/>
 <!--                                    <field name="project"/>-->
                                     <field name="description"/>

@@ -8,7 +8,7 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='vat']" position="after">
                 <field name="is_vendor" widget="boolean_toggle"/>
-                <field name="vendor_type" invisible="is_vendor != True"/>
+                <field name="vendor_type" invisible="not is_vendor"/>
             </xpath>
         </field>
     </record>

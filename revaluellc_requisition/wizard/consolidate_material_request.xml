@@ -23,7 +23,7 @@
                                     <field name="demand" force_save="1" readonly="1"/>
                                     <field name="request"/>
                                     <field name="remaining" force_save="1"/>
-                                    <field name="material_request_id" column_invisible="True"/>
+                                    <field name="material_request_id" invisible="1"/>
                                 </tree>
                             </field>
 

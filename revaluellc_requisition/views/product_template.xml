@@ -7,7 +7,7 @@
         <field name="arch" type="xml">
 
             <xpath expr="//field[@name='tracking']" position="after">
-                <field name="tracking_by_mac" invisible="tracking != 'serial'"
+                <field name="tracking_by_mac" invisible="tracking not in ['serial']"
                        widget="boolean_toggle"/>
             </xpath>
 
